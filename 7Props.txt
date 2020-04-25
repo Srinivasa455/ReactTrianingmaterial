@@ -1,0 +1,54 @@
+Props
+Props refer to properties that are passed to child components by the parent components. For instance, if you need to pass a value from a parent component to a child component, you can pass them down as properties or props.
+
+
+
+Let’s start with props. This simply is shorthand for properties. Props are how components talk to each other. If you’re at all familiar with React then you should know that props flow downwards from the parent component.
+
+There is also the case that you can have default props so that props are set even if a parent component doesn’t pass props down.
+
+This is why people refer to React as having uni-directional data flow. This takes a bit of getting your head around and I’ll probably blog on this later, but for now just remember: data flows from parent to child. Props are immutable (fancy word for it not changing)
+
+
+class App extends React.Component {
+ render() {
+  return <Child value="SOS" />;  
+ }
+}
+
+class Child extends React.Component{
+ render(){
+  return <h3>The value passed from parent is {this.props.value}</h3>;
+ }
+}
+
+All React components must act like pure functions with respect to their props.
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+
+
+What are the differences between props and state?
+Finally, let’s recap and see the main differences between props and state:
+
+Components receive data from outside with props, whereas they can create and manage their own data with state
+Props are used to pass data, whereas state is for managing data
+Data from props is read-only, and cannot be modified by a component that is receiving it from outside
+State data can be modified by its own component, but is private (cannot be accessed from outside)
+Props can only be passed from parent component to child (unidirectional flow)
+Modifying state should happen with the setState ( ) method
+

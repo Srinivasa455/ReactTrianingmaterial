@@ -1,0 +1,73 @@
+ReactJS | Refs
+Refs are a function provided by React to access the DOM element and the React element that you might have created on your own. They are used in cases where we want to change the value of a child component, without making use of props and all. They also provide us with good functionality as we can use callbacks with them.
+
+// without refs 
+class App extends React.Component { 
+  constructor(){ 
+   super(); 
+   this.state = { sayings: ""}; 
+   } 
+  update(e){ 
+   this.setState({ sayings: e.target.value}); 
+  } 
+  render(){ 
+   return ( 
+    <div> 
+     Mukul Says <input type="text" onChange = {this.update.bind(this)}/> 
+    <br/> 
+    <em>{this.state.sayings}</em> 
+   </div> 
+  ); 
+ } 
+} 
+ReactDOM.render(< App />, document.getElementById('root')); 
+
+// using refs 
+class App extends React.Component { 
+ constructor(){ 
+  super(); 
+  this.state = { sayings: ""}; 
+ } 
+ update(e){ 
+  this.setState({ sayings: this.refs.anything.value}); 
+ } 
+ render(){ 
+  return ( 
+   <div> 
+    <input type="text" ref="anything"
+      onChange = {this.update.bind(this)}/> 
+   <br/> 
+   <em>{this.state.sayings}</em> 
+  </div> 
+  ); 
+ } 
+} 
+ ReactDOM.render(< App />, document.getElementById('root')); 
+
+
+// callback used inside ref 
+class App extends React.Component { 
+  constructor(){ 
+   super(); 
+   this.state = { sayings: ""}; 
+  } 
+  update(e){ 
+   this.setState({ sayings: this.a.value}); 
+  } 
+  render(){ 
+   return ( 
+    <div> 
+      <input type="text" 
+     ref={(call_back) => {this.a = call_back}} onChange =  
+     {this.update.bind(this)}/> 
+   <br/> 
+   <em>{this.state.sayings}</em> 
+   </div> 
+  ); 
+ } 
+} 
+ReactDOM.render(< App />, document.getElementById('root'));
+
+
+
+

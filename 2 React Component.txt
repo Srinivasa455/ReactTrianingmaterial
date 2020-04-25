@@ -1,0 +1,120 @@
+
+
+
+
+
+What is a React Component?
+
+A component is an independent, reusable code block, which divides the UI into smaller pieces. In other words, we can think of components as LEGO blocks. Likewise we create a LEGO structure from many little LEGO blocks, we create a webpage or UI from many little code blocks (components).
+
+
+ it’s beneficial to use component-based technologies, and React JS is one of them.
+ React has 2 types of components: Functional (Stateless) and Class (Stateful).
+
+Let’s see them in details…
+Functional (Stateless) Components
+
+A functional component is basically a JavaScript (or ES6) function which returns a React element.
+ According to React official docs, the function below is a valid React component:
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+This function is a valid React component because it accepts a single “props” (which stands for properties) object argument with data and returns a React element. — reactjs.org
+So we can define a React functional component as a JS Function:
+
+or as an ES6 arrow function:
+
+Both of the functions are valid React components. They may take props as an argument (when necessary), but they must return a React element.
+
+IMPORTANT: Functional components are also known as stateless components because, in the past, we couldn’t do more complex things like React State (data) management or life-cycle methods in functional components.
+
+So a React Functional Component:
+is a JavaScript / ES6 function
+must return a React element
+take props as parameter if necessary
+
+Class (Stateful) Components
+Class components are ES6 classes. They are more complex than functional components including constructors, life-cycle methods, render( ) function and state (data) management. 
+
+In the example below, we can see how a simple class component looks like:
+
+Here, the ExampleComponent class extends Component, so React understands that this class is a component, and it renders (returns) a React Element.
+So, a React class component:
+is an ES6 class, will be a component once it ‘extends’ React component.
+can accept props (in the constructor) if needed
+can maintain its own data with state
+must have a render( ) method which returns a React element (JSX), or null
+
+Creating Our First Component
+
+Now let’s see how to create and call React components:
+
+I will create 1 class component, as parent component
+
+And 1 functional component as child component
+
+Then I will call the child inside the parent component
+
+Finally, I will call the parent component on the root file (app.js)
+
+NOTE: If you haven’t installed the React app yet, see here.
+Let’s start with creating the parent & child components. Firstly, we create a file named parentComponent and another file for child (firstChild) with a .js or .jsx extension:
+
+inside the parentComponent file first we need to import React and Component (so React understands that this class is a component), then define a class as below:
+import React, { Component } from 'react';
+class ParentComponent extends Component {
+  render() {
+    return <h1>I'm the parent component.</h1>;
+  }
+}
+export default ParentComponent;
+So our ParentComponent is now a class component and ready to use.
+Then, inside the firstChild file, we import React again and then define an ES6 function as below:
+import React from 'react';     // React needs to be imported
+const FirstChild = () => {
+  return <p>I'm the 1st child!</p>; 
+};
+export default FirstChild;
+This component will return a <p> element, but to see it, it needs to be called somewhere.
+How to call a component?
+A component is being called like an HTML tag, but starting with a capital letter:
+<FirstChild />    // we can call a component like an HTML tag
+Now we can the child component inside parent:
+import React, { Component } from 'react';
+import FirstChild from './firstChild';  // we need to import the child component first
+class ParentComponent extends Component {
+  render() {
+    return (
+      <h1>
+        I'm the parent component.
+        <FirstChild />   // Then we call it inside parent
+      </h1>
+    );
+  }
+}
+export default ParentComponent;
+So we are now able to see the child component here. But we also need to call the Parent component somewhere.
+We can finally call the Parent component inside the root (App) function, so we can see the all of them in the webpage:
+
+import React from 'react';
+import   "./App.css";
+
+import  ParentComponent from './parentComponent';
+
+const App =()=>{
+   return(
+<div className ="App">
+<ParentComponent/>
+
+</div>
+
+   );
+}
+
+Now, the root file (app) renders the parentComponent, including everything what’s inside of it. And since the firstChild component is inside parentComponent, we can see it too:
+
+
+
+

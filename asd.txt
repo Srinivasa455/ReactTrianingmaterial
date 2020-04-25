@@ -1,0 +1,45 @@
+STATE
+
+Props shouldn’t change, so state steps up. Normally components don’t have state and so are referred to as stateless. A component using state is known as stateful. Feel free to drop that little tidbit at parties and watch people edge away from you.
+
+So state is used so that a component can keep track of information in between any renders that it does. When you setState it updates the state object and then re-renders the component. This is super cool because that means React takes care of the hard work and is blazingly fast.
+
+
+
+PROPS
+
+Let’s start with props. This simply is shorthand for properties. Props are how components talk to each other. If you’re at all familiar with React then you should know that props flow downwards from the parent component.
+
+There is also the case that you can have default props so that props are set even if a parent component doesn’t pass props down.
+
+This is why people refer to React as having uni-directional data flow. This takes a bit of getting your head around and I’ll probably blog on this later, but for now just remember: data flows from parent to child. Props are immutable (fancy word for it not changing)
+
+So we’re happy. Components receive data from the parent. All sorted, right?
+
+Well, not quite. What happens when a component receives data from someone other than the parent? What if the user inputs data directly to the component?
+
+Well, this is why we have state.
+
+
+
+As a little example of state, here is a snippet from a search bar (worth checking out this course if you want to learn more about React)
+
+Class SearchBar extends Component {
+ constructor(props) {
+  super(props);
+this.state = { term: '' };
+ }
+render() {
+  return (
+   <div className="search-bar">
+   <input 
+   value={this.state.term}
+   onChange={event => this.onInputChange(event.target.value)} />
+   </div>
+   );
+ }
+onInputChange(term) {
+  this.setState({term});
+  this.props.onSearchTermChange(term);
+ }
+}

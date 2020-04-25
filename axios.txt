@@ -1,0 +1,2 @@
+https://chrome.google.com/webstore/search/cors
+https://webbrowsertools.com/test-cors/
